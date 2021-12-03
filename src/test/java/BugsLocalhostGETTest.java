@@ -15,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 public class BugsLocalhostGETTest {
 
     @Test
-    public void LocalhostGETAllbugs(){
+    public void LocalhostGETAllbugs() {
         Response response = given()
                 .when()
-                .get(Global_settings.URL_POSTS + '/' + Global_settings.BUGS)
+                .get(Globalsettings.URL + '/' + Globalsettings.BUGS)
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
@@ -28,14 +28,15 @@ public class BugsLocalhostGETTest {
         JsonPath json = response.jsonPath();
         List<String> names = json.getList("id");
         //WIELKOSC LISTY
-        assertEquals(18,names.size());
+        assertEquals(18, names.size());
     }
+
     @Test
-    public void LocalhostFirstPathVariablesGETCheckValue_example1(){
+    public void LocalhostFirstPathVariablesGETCheckValue_example1() {
         Response response = given()
                 .when()
-                .pathParam("bugsID",1)
-                .get(Global_settings.URL_POSTS+"/"+Global_settings.BUGS+"/{bugsID}")
+                .pathParam("bugsID", 1)
+                .get(Globalsettings.URL + "/" + Globalsettings.BUGS + "/{bugsID}")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
@@ -47,12 +48,13 @@ public class BugsLocalhostGETTest {
 
 
     }
+
     @Test
-    public void LocalhostFirstPathVariablesGETCheckValue_exaple2(){
+    public void LocalhostFirstPathVariablesGETCheckValue_exaple2() {
         Response response = given()
                 .when()
-                .pathParam("bugsID",1)
-                .get(Global_settings.URL_POSTS+"/"+Global_settings.BUGS+"/{bugsID}")
+                .pathParam("bugsID", 1)
+                .get(Globalsettings.URL + "/" + Globalsettings.BUGS + "/{bugsID}")
                 .then()
                 .body("title", equalTo("title1"))
                 .body("status", equalTo("open"))
@@ -60,13 +62,14 @@ public class BugsLocalhostGETTest {
                 .extract()
                 .response();
 
- }
+    }
+
     @Test
-    public void LocalhostFirstPathVariablesGETNotEmpty_example1(){
+    public void LocalhostFirstPathVariablesGETNotEmpty_example1() {
         Response response = given()
                 .when()
-                .pathParam("bugsID",1)
-                .get(Global_settings.URL_POSTS+"/"+Global_settings.BUGS+"/{bugsID}")
+                .pathParam("bugsID", 1)
+                .get(Globalsettings.URL + "/" + Globalsettings.BUGS + "/{bugsID}")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
@@ -82,19 +85,20 @@ public class BugsLocalhostGETTest {
         Assertions.assertNotNull(json.get("description"));
 
     }
+
     @Test
-    public void LocalhostFirstPathVariablesGETNotEmpty_example2(){
+    public void LocalhostFirstPathVariablesGETNotEmpty_example2() {
         Response response = given()
                 .when()
-                .pathParam("bugsID",1)
-                .get(Global_settings.URL_POSTS+"/"+Global_settings.BUGS+"/{bugsID}")
+                .pathParam("bugsID", 1)
+                .get(Globalsettings.URL + "/" + Globalsettings.BUGS + "/{bugsID}")
                 .then()
                 .body("title", notNullValue())
                 .body("status", notNullValue())
                 .body("description", notNullValue())
-                .body("title",not(equalTo("")) )
-                .body("status",not(equalTo("")) )
-                .body("description",not(equalTo("")) )
+                .body("title", not(equalTo("")))
+                .body("status", not(equalTo("")))
+                .body("description", not(equalTo("")))
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
                 .response();
@@ -103,11 +107,11 @@ public class BugsLocalhostGETTest {
     }
 
     @Test
-    public void LocalhostAllresponseGETnotEmpty(){
+    public void LocalhostAllresponseGETnotEmpty() {
         Response response = given()
                 .when()
-                //.get(Global_settings.URL_POSTS + '/' + Global_settings.POST)
-                .get(Global_settings.URL_POSTS+'/'+Global_settings.BUGS)
+
+                .get(Globalsettings.URL + '/' + Globalsettings.BUGS)
 
                 .then()
                 .statusCode(HttpStatus.SC_OK)
@@ -138,12 +142,13 @@ public class BugsLocalhostGETTest {
 
 
     }
+
     @Test
-    public void LocalhostAllGETreturnStatusOpen(){
+    public void LocalhostAllGETreturnStatusOpen() {
         Response response = given()
                 .when()
-                .get(Global_settings.URL_POSTS+'/'+Global_settings.BUGS)
-                 .then()
+                .get(Globalsettings.URL + '/' + Globalsettings.BUGS)
+                .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
                 .response();
@@ -156,11 +161,12 @@ public class BugsLocalhostGETTest {
                 .forEach(i -> assertEquals("open", status.get(i)));
 
     }
+
     @Test
-    public void LocalhostAllGETReturnNewIssues(){
+    public void LocalhostAllGETReturnNewIssues() {
         Response response = given()
                 .when()
-                .get(Global_settings.URL_POSTS+'/'+Global_settings.BUGS)
+                .get(Globalsettings.URL + '/' + Globalsettings.BUGS)
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
@@ -175,11 +181,12 @@ public class BugsLocalhostGETTest {
 
 
     }
+
     @Test
-    public void LocalhostAllGETReturnDescriptionStatusCode404(){
+    public void LocalhostAllGETReturnDescriptionStatusCode404() {
         Response response = given()
                 .when()
-                .get(Global_settings.URL_POSTS+'/'+Global_settings.BUGS)
+                .get(Globalsettings.URL + '/' + Globalsettings.BUGS)
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
@@ -195,12 +202,13 @@ public class BugsLocalhostGETTest {
 
 
     }
+
     @Test
-    public void LocalhostQueryParamsGETReturnTwoEmployer(){
+    public void LocalhostQueryParamsGETReturnTwoEmployer() {
         Response response = given()
                 .when()
-                .queryParam("emploeeId","5")
-                .get(Global_settings.URL_POSTS+'/'+Global_settings.BUGS)
+                .queryParam("emploeeId", "5")
+                .get(Globalsettings.URL + '/' + Globalsettings.BUGS)
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
@@ -210,7 +218,7 @@ public class BugsLocalhostGETTest {
         JsonPath json = response.jsonPath();
         List<String> names = json.getList("id");
         //WIELKOSC LISTY
-        assertEquals(2,names.size());
+        assertEquals(2, names.size());
 
 
     }

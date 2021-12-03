@@ -20,61 +20,63 @@ public class BugsLocalhostPUTPATCHTest {
 
 
     @BeforeAll//wykona się metoda raz przed testami
-    public static void beforeAll(){
+    public static void beforeAll() {
 
         faker = new Faker();
     }
+
     @BeforeEach//wykonać się przed kazdym  testem
-    public  void BeforeEach(){
+    public void BeforeEach() {
 
         title = faker.job().title();
         description = faker.color().name();
-        emploeeId = faker.number().numberBetween(1,5);
+        emploeeId = faker.number().numberBetween(1, 5);
 
 
     }
 
 
     @Test
-    public void jsonplaceholderUpdateNewUserPUT(){
+    public void jsonplaceholderUpdateNewUserPUT() {
 
         JSONObject user = new JSONObject();
-        user.put("title",title);
-        user.put("description",description);
-        user.put("emploeeId",emploeeId);
-        user.put("status","newOpen");
+        user.put("title", title);
+        user.put("description", description);
+        user.put("emploeeId", emploeeId);
+        user.put("status", "newOpen");
 
         Response response = given()
                 .contentType("application/json")
                 .body(user.toString())
                 .when()
-                .pathParam("bugsID",2)
-                .put(Global_settings.URL_POSTS+"/"+Global_settings.BUGS+"/{bugsID}")
+                .pathParam("bugsID", 2)
+                .put(Globalsettings.URL + "/" + Globalsettings.BUGS + "/{bugsID}")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
                 .response();
 
         JsonPath json = response.jsonPath();
-        assertEquals(title,json.get("title"));
-        assertEquals(description,json.get("description"));
-        assertEquals("newOpen",json.get("status"));
+        assertEquals(title, json.get("title"));
+        assertEquals(description, json.get("description"));
+        assertEquals("newOpen", json.get("status"));
 
 
     }
+
     @Test
-    public void jsonplaceholderUpdateNewUserPATCH(){
+    public void jsonplaceholderUpdateNewUserPATCH() {
 
 
         JSONObject userStatsu = new JSONObject();
 
-        userStatsu.put("status","close");
+        userStatsu.put("status", "close");
 
         Response response = given()
                 .contentType("application/json")
                 .body(userStatsu.toString())
-                .pathParam("bugsID",2)
-                .patch(Global_settings.URL_POSTS+"/"+Global_settings.BUGS+"/{bugsID}")
+                .pathParam("bugsID", 2)
+                .patch(Globalsettings.URL + "/" + Globalsettings.BUGS + "/{bugsID}")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
@@ -83,7 +85,7 @@ public class BugsLocalhostPUTPATCHTest {
         JsonPath json = response.jsonPath();
 
 
-        assertEquals("close",json.get("status"));
+        assertEquals("close", json.get("status"));
 
 
     }
