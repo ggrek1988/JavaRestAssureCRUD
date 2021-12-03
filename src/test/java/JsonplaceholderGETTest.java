@@ -1,4 +1,3 @@
-import io.restassured.internal.common.assertion.Assertion;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
@@ -30,6 +29,7 @@ public class JsonplaceholderGETTest {
                 //.filter(name -> name.startsWith("L"))
                 //.forEach(System.out.println(name));
                 .forEach(System.out::println);
+
 
         Assertions.assertEquals(10,names.size());
     }

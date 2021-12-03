@@ -6,8 +6,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Locale;
-
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -20,8 +18,10 @@ public class JsonplaceholderPUTPATCHTest {
     private String fakeusername;
     private String fakephone;
 
+
     @BeforeAll//wykonać się metodzie raz przed testami
     public static void beforeAll(){
+
         faker = new Faker();
     }
     @BeforeEach//wykonać się przed kazdym naszym testem
@@ -39,7 +39,7 @@ public class JsonplaceholderPUTPATCHTest {
     public void jsonplaceholderUpdateNewUserPUT(){
         //obiektowy json//
 
-        Locale locale;
+
 
 
 
