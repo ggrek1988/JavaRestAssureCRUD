@@ -34,8 +34,8 @@ public class BugsLocalhostGETTest {
     @Test
     public void LocalhostFirstPathVariablesGETCheckValue_example1() {
         Response response = given()
-                .when()
                 .pathParam("bugsID", 1)
+                .when()
                 .get(Globalsettings.URL + "/" + Globalsettings.BUGS + "/{bugsID}")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
@@ -52,8 +52,8 @@ public class BugsLocalhostGETTest {
     @Test
     public void LocalhostFirstPathVariablesGETCheckValue_exaple2() {
         Response response = given()
-                .when()
                 .pathParam("bugsID", 1)
+                .when()
                 .get(Globalsettings.URL + "/" + Globalsettings.BUGS + "/{bugsID}")
                 .then()
                 .body("title", equalTo("title1"))
@@ -67,8 +67,8 @@ public class BugsLocalhostGETTest {
     @Test
     public void LocalhostFirstPathVariablesGETNotEmpty_example1() {
         Response response = given()
-                .when()
                 .pathParam("bugsID", 1)
+                .when()
                 .get(Globalsettings.URL + "/" + Globalsettings.BUGS + "/{bugsID}")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
@@ -89,8 +89,8 @@ public class BugsLocalhostGETTest {
     @Test
     public void LocalhostFirstPathVariablesGETNotEmpty_example2() {
         Response response = given()
-                .when()
                 .pathParam("bugsID", 1)
+                .when()
                 .get(Globalsettings.URL + "/" + Globalsettings.BUGS + "/{bugsID}")
                 .then()
                 .body("title", notNullValue())
@@ -110,9 +110,7 @@ public class BugsLocalhostGETTest {
     public void LocalhostAllresponseGETnotEmpty() {
         Response response = given()
                 .when()
-
                 .get(Globalsettings.URL + '/' + Globalsettings.BUGS)
-
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
@@ -206,8 +204,8 @@ public class BugsLocalhostGETTest {
     @Test
     public void LocalhostQueryParamsGETReturnTwoEmployer() {
         Response response = given()
-                .when()
                 .queryParam("emploeeId", "5")
+                .when()
                 .get(Globalsettings.URL + '/' + Globalsettings.BUGS)
                 .then()
                 .statusCode(HttpStatus.SC_OK)

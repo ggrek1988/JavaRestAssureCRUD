@@ -37,7 +37,7 @@ public class BugsLocalhostPUTPATCHTest {
 
 
     @Test
-    public void jsonplaceholderUpdateNewUserPUT() {
+    public void localhostUpdateNewBugsPUT() {
 
         JSONObject user = new JSONObject();
         user.put("title", title);
@@ -48,8 +48,8 @@ public class BugsLocalhostPUTPATCHTest {
         Response response = given()
                 .contentType("application/json")
                 .body(user.toString())
-                .when()
                 .pathParam("bugsID", 2)
+                .when()
                 .put(Globalsettings.URL + "/" + Globalsettings.BUGS + "/{bugsID}")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
@@ -65,7 +65,7 @@ public class BugsLocalhostPUTPATCHTest {
     }
 
     @Test
-    public void jsonplaceholderUpdateNewUserPATCH() {
+    public void localhostUpdateNewBugsPATCH() {
 
 
         JSONObject userStatsu = new JSONObject();
@@ -76,6 +76,7 @@ public class BugsLocalhostPUTPATCHTest {
                 .contentType("application/json")
                 .body(userStatsu.toString())
                 .pathParam("bugsID", 2)
+                .when()
                 .patch(Globalsettings.URL + "/" + Globalsettings.BUGS + "/{bugsID}")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
